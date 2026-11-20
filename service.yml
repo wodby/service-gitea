@@ -9,6 +9,7 @@ scalable: false
 options:
 - version: '28'
   tag: '28.4.0-rootless'
+  digest: sha256:15ab7fadb44981a2b781f40c712cad07066197f395100ea1c6326e14e5bb073a
   default: true
 
 labels:
@@ -58,22 +59,18 @@ settings:
 # never shown, so no one else can claim the site.
 - name: admin-username
   title: Admin username
-  description: Username of the Gitea administrator created on the first 
-    deployment. Gitea reserves some names, such as admin.
+  description: Username of the Gitea administrator created on the first deployment. Gitea reserves some names, such as admin.
   default: gitea_admin
   var: GITEA_ADMIN_USERNAME
 - name: admin-password
   title: Admin password
-  description: Password of the Gitea administrator created on the first 
-    deployment, at least 8 characters. Change it in Gitea afterwards; this 
-    setting is not applied again.
+  description: Password of the Gitea administrator created on the first deployment, at least 8 characters. Change it in Gitea afterwards; this setting is not applied again.
   required: true
   secret: true
   var: GITEA_ADMIN_PASSWORD
 - name: admin-email
   title: Admin email
-  description: Email address of the Gitea administrator. When empty, it is the 
-    username at the site's domain.
+  description: Email address of the Gitea administrator. When empty, it is the username at the site's domain.
   var: GITEA_ADMIN_EMAIL
 
 links:
@@ -149,8 +146,7 @@ env:
   secret: true
 # Client addresses come from X-Forwarded-For set by the cluster gateway.
 - name: GITEA__security__REVERSE_PROXY_TRUSTED_PROXIES
-  value: 
-    127.0.0.0/8,::1/128,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,100.64.0.0/10,fc00::/7
+  value: 127.0.0.0/8,::1/128,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,100.64.0.0/10,fc00::/7
 - name: GITEA__oauth2__JWT_SECRET
   value: '{{tokens.oauth2_jwt_secret}}'
   secret: true
